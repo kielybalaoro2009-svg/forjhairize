@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -12,248 +16,469 @@ body {
 
     font-family: "Trebuchet MS", Arial, sans-serif;
 
-    background:
-        radial-gradient(circle at 10% 20%, #ffd6e3 0 8px, transparent 9px),
-        radial-gradient(circle at 90% 80%, #ffd6e3 0 7px, transparent 8px),
-        #fff1f5;
-
     color: #5a3843;
 
     overflow-x: hidden;
+
+    /* pink gingham-inspired background */
+    background-color: #fff0f5;
+
+    background-image:
+        linear-gradient(90deg, rgba(255, 145, 175, 0.12) 50%, transparent 50%),
+        linear-gradient(rgba(255, 145, 175, 0.12) 50%, transparent 50%);
+
+    background-size: 40px 40px;
 }
 
-/* cute floating decorations */
-body::before,
-body::after {
-    position: fixed;
-    font-size: 35px;
-    opacity: 0.7;
-    pointer-events: none;
-    animation: float 4s ease-in-out infinite;
-}
+
+/* =========================
+   FLOATING DECORATIONS
+   ========================= */
 
 body::before {
     content: "🎀";
+
+    position: fixed;
+
     top: 8%;
-    left: 8%;
+    left: 7%;
+
+    font-size: 45px;
+
+    animation: float 4s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: 0;
 }
 
 body::after {
     content: "♡";
-    bottom: 10%;
-    right: 10%;
+
+    position: fixed;
+
+    bottom: 8%;
+    right: 8%;
+
+    font-size: 55px;
+
     color: #ff7fa0;
-    font-size: 45px;
-    animation-delay: 1s;
+
+    animation: float 3.5s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: 0;
 }
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
 
 .container {
     width: 90%;
     max-width: 650px;
-}
-
-/* main card */
-.page {
-    display: none;
-    text-align: center;
-
-    padding: 45px 30px;
-
-    background: #fffafc;
-
-    border: 3px solid #ffc1d2;
-    border-radius: 30px;
-
-    box-shadow:
-        0 15px 35px rgba(190, 80, 110, 0.15),
-        inset 0 0 0 6px #fff0f5;
 
     position: relative;
 
-    animation: appear 0.5s ease;
+    z-index: 1;
 }
+
+
+/* =========================
+   PAGE CARD
+   ========================= */
+
+.page {
+    display: none;
+
+    position: relative;
+
+    text-align: center;
+
+    padding: 50px 32px;
+
+    background: #fffafd;
+
+    border: 4px solid #ffb6ca;
+
+    border-radius: 32px;
+
+    box-shadow:
+        0 15px 40px rgba(210, 80, 120, 0.18),
+        0 0 0 8px rgba(255, 255, 255, 0.7);
+
+    animation: pageIn 0.5s ease;
+
+    overflow: hidden;
+}
+
+
+/* little decorative corners */
 
 .page::before {
     content: "🎀";
 
     position: absolute;
 
-    top: -25px;
-    left: 50%;
+    top: 12px;
+    left: 15px;
 
-    transform: translateX(-50%);
+    font-size: 30px;
 
-    font-size: 42px;
-
-    background: #fffafc;
-    padding: 0 10px;
-
-    border-radius: 50%;
+    transform: rotate(-10deg);
 }
+
+.page::after {
+    content: "🌸";
+
+    position: absolute;
+
+    bottom: 12px;
+    right: 15px;
+
+    font-size: 25px;
+
+    animation: flowerFloat 3s ease-in-out infinite;
+}
+
 
 .page.active {
     display: block;
 }
 
-/* headings */
 
-h1 {
-    font-size: 50px;
+/* =========================
+   OPENING
+   ========================= */
 
-    color: #e85b83;
-
-    margin: 15px 0;
-
-    text-shadow: 2px 2px 0 #ffd5e1;
+#opening {
+    padding-top: 55px;
 }
 
-h2 {
-    font-size: 28px;
-
-    color: #d94f76;
-
-    margin-bottom: 20px;
-}
-
-/* paragraphs */
-
-p {
-    font-size: 17px;
-    line-height: 1.7;
-
-    color: #654852;
-}
-
-/* buttons */
-
-button {
-    border: 3px solid #f06f91;
-
-    padding: 14px 27px;
-
-    border-radius: 30px;
-
-    background: #ff7fa0;
-    color: white;
+#opening p:first-child {
+    color: #e15b82;
 
     font-size: 16px;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    margin-top: 20px;
-
-    box-shadow: 0 5px 0 #d95778;
-
-    transition: 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-3px) scale(1.04);
-
-    box-shadow: 0 8px 0 #d95778;
-}
-
-button:active {
-    transform: translateY(2px);
-
-    box-shadow: 0 3px 0 #d95778;
-}
-
-/* reason counter */
-
-#number {
-    font-size: 14px;
-
-    color: #d45a7b;
 
     font-weight: bold;
 
     letter-spacing: 1px;
-
-    opacity: 0.8;
 }
 
-/* reason text */
+
+h1 {
+    margin: 15px 0;
+
+    font-size: 52px;
+
+    color: #e65d86;
+
+    text-shadow:
+        2px 2px 0 #ffd5e1,
+        4px 4px 0 rgba(255, 182, 202, 0.35);
+
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+
+h2 {
+    margin-bottom: 20px;
+
+    font-size: 29px;
+
+    color: #d94f76;
+}
+
+
+/* =========================
+   TEXT
+   ========================= */
+
+p {
+    font-size: 17px;
+
+    line-height: 1.75;
+
+    color: #644650;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button {
+    border: 3px solid #ed6d91;
+
+    padding: 14px 28px;
+
+    margin-top: 20px;
+
+    border-radius: 30px;
+
+    background: #ff7fa0;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #d95778,
+        0 8px 15px rgba(210, 80, 120, 0.15);
+
+    transition: all 0.2s ease;
+}
+
+
+button:hover {
+    transform: translateY(-4px) scale(1.04);
+
+    background: #ff6f96;
+
+    box-shadow:
+        0 8px 0 #d95778,
+        0 12px 20px rgba(210, 80, 120, 0.18);
+}
+
+
+button:active {
+    transform: translateY(2px);
+
+    box-shadow:
+        0 3px 0 #d95778;
+}
+
+
+/* =========================
+   REASON COUNTER
+   ========================= */
+
+#number {
+    display: inline-block;
+
+    padding: 7px 16px;
+
+    border-radius: 20px;
+
+    background: #ffe0e9;
+
+    color: #d45278;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   REASON
+   ========================= */
 
 #reason {
-    min-height: 120px;
+    min-height: 140px;
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
-    color: #613d49;
+    padding: 20px;
 
-    padding: 15px;
+    color: #603d49;
+
+    font-size: 27px;
+
+    line-height: 1.5;
+
+    animation: reasonAppear 0.4s ease;
 }
 
-/* ending */
+
+/* =========================
+   ENDING
+   ========================= */
+
+#ending h2:first-child {
+    color: #e35b83;
+}
+
 
 #ending h2:last-child {
-    color: #e85b83;
+    margin-top: 35px;
 
-    margin-top: 30px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: #ffe4ec;
+
+    color: #e2547c;
+
+    box-shadow: inset 0 0 15px rgba(220, 80, 120, 0.08);
 }
 
-/* floating animation */
 
-@keyframes float {
-    0% {
-        transform: translateY(0px) rotate(-5deg);
-    }
+/* =========================
+   ANIMATIONS
+   ========================= */
 
-    50% {
-        transform: translateY(-12px) rotate(5deg);
-    }
+@keyframes pageIn {
 
-    100% {
-        transform: translateY(0px) rotate(-5deg);
-    }
-}
-
-/* page entrance animation */
-
-@keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(15px) scale(0.98);
+
+        transform:
+            translateY(20px)
+            scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
-/* phone */
+
+@keyframes reasonAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(10px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+}
+
+
+@keyframes flowerFloat {
+
+    0% {
+        transform: rotate(0deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(10deg) translateY(-5px);
+    }
+
+    100% {
+        transform: rotate(0deg) translateY(0);
+    }
+}
+
+
+@keyframes titleFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   PHONE
+   ========================= */
 
 @media (max-width: 600px) {
+
+    body::before {
+        top: 4%;
+        left: 4%;
+
+        font-size: 32px;
+    }
+
+    body::after {
+        bottom: 5%;
+        right: 5%;
+
+        font-size: 40px;
+    }
+
 
     .container {
         width: 92%;
     }
 
+
     .page {
-        padding: 40px 22px;
-        border-radius: 25px;
+        padding: 45px 20px;
+
+        border-radius: 27px;
     }
 
+
     h1 {
-        font-size: 38px;
+        font-size: 39px;
     }
+
 
     h2 {
         font-size: 24px;
     }
 
+
     p {
         font-size: 16px;
     }
 
-    button {
-        font-size: 15px;
-        padding: 13px 22px;
+
+    #reason {
+        font-size: 23px;
+
+        min-height: 150px;
     }
 
+
+    button {
+        padding: 13px 23px;
+
+        font-size: 15px;
+    }
 }

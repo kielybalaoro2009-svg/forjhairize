@@ -10,10 +10,41 @@ body {
     justify-content: center;
     align-items: center;
 
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
 
-    background: #fff1f5;
-    color: #3d3035;
+    background:
+        radial-gradient(circle at 10% 20%, #ffd6e3 0 8px, transparent 9px),
+        radial-gradient(circle at 90% 80%, #ffd6e3 0 7px, transparent 8px),
+        #fff1f5;
+
+    color: #5a3843;
+
+    overflow-x: hidden;
+}
+
+/* cute floating decorations */
+body::before,
+body::after {
+    position: fixed;
+    font-size: 35px;
+    opacity: 0.7;
+    pointer-events: none;
+    animation: float 4s ease-in-out infinite;
+}
+
+body::before {
+    content: "🎀";
+    top: 8%;
+    left: 8%;
+}
+
+body::after {
+    content: "♡";
+    bottom: 10%;
+    right: 10%;
+    color: #ff7fa0;
+    font-size: 45px;
+    animation-delay: 1s;
 }
 
 .container {
@@ -21,38 +52,84 @@ body {
     max-width: 650px;
 }
 
+/* main card */
 .page {
     display: none;
     text-align: center;
 
-    padding: 40px 25px;
+    padding: 45px 30px;
 
-    background: white;
-    border-radius: 25px;
+    background: #fffafc;
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 3px solid #ffc1d2;
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 35px rgba(190, 80, 110, 0.15),
+        inset 0 0 0 6px #fff0f5;
+
+    position: relative;
+
+    animation: appear 0.5s ease;
+}
+
+.page::before {
+    content: "🎀";
+
+    position: absolute;
+
+    top: -25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 42px;
+
+    background: #fffafc;
+    padding: 0 10px;
+
+    border-radius: 50%;
 }
 
 .page.active {
     display: block;
 }
 
+/* headings */
+
 h1 {
     font-size: 50px;
+
+    color: #e85b83;
+
+    margin: 15px 0;
+
+    text-shadow: 2px 2px 0 #ffd5e1;
 }
 
 h2 {
     font-size: 28px;
+
+    color: #d94f76;
+
+    margin-bottom: 20px;
 }
+
+/* paragraphs */
 
 p {
     font-size: 17px;
     line-height: 1.7;
+
+    color: #654852;
 }
 
+/* buttons */
+
 button {
-    border: none;
-    padding: 14px 25px;
+    border: 3px solid #f06f91;
+
+    padding: 14px 27px;
 
     border-radius: 30px;
 
@@ -60,25 +137,123 @@ button {
     color: white;
 
     font-size: 16px;
+    font-weight: bold;
 
     cursor: pointer;
 
     margin-top: 20px;
+
+    box-shadow: 0 5px 0 #d95778;
+
+    transition: 0.2s ease;
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: translateY(-3px) scale(1.04);
+
+    box-shadow: 0 8px 0 #d95778;
 }
+
+button:active {
+    transform: translateY(2px);
+
+    box-shadow: 0 3px 0 #d95778;
+}
+
+/* reason counter */
 
 #number {
     font-size: 14px;
-    opacity: 0.6;
+
+    color: #d45a7b;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    opacity: 0.8;
 }
 
+/* reason text */
+
 #reason {
-    min-height: 100px;
+    min-height: 120px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    color: #613d49;
+
+    padding: 15px;
+}
+
+/* ending */
+
+#ending h2:last-child {
+    color: #e85b83;
+
+    margin-top: 30px;
+}
+
+/* floating animation */
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(-5deg);
+    }
+}
+
+/* page entrance animation */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* phone */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .page {
+        padding: 40px 22px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 15px;
+        padding: 13px 22px;
+    }
+
 }
